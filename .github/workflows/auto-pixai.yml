@@ -1,0 +1,22 @@
+name: PixAI Auto Signin
+
+on:
+  schedule:
+    # 每天 UTC 时间 0 点运行 (北京时间 8 点)
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  signin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Auto Signin
+        env:
+          LOGINNAME: ${{ secrets.LOGINNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: |
+          docker pull smile0301/auto-pixai
+          docker run --rm \
+            -e LOGINNAME="$LOGINNAME" \
+            -e PASSWORD="$PASSWORD" \
+            smile0301/auto-pixai

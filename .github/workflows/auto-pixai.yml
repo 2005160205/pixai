@@ -2,8 +2,8 @@ name: PixAI Auto Signin
 
 on:
   schedule:
-    # 每天 UTC 时间 0 点35运行 (北京时间 8 点35)
-    - cron: '35 0 * * *'
+    # 每天 UTC 时间 0 点40运行 (北京时间 8 点40)
+    - cron: '40 0 * * *'
   workflow_dispatch:  # 允许手动触发
 
 jobs:

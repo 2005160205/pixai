@@ -7,7 +7,7 @@ on:
   workflow_dispatch:  # 允许手动触发
 
 jobs:
-  signin:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Run Auto Signin

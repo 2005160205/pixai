@@ -2,25 +2,30 @@ name: PixAI Auto Signin
 
 on:
   schedule:
-    # 每天 UTC 时间 3:00 运行 (北京时间 11:00)
+    # 每天 UTC 时间 3:00（北京时间 11:00）
     - cron: '0 3 * * *'
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:  # 手动触发
 
 jobs:
-  Signin:
-    runs-on: ubuntu-latest          
-    steps:
-      - name: Debug Cron Job
-        run: echo "Scheduled Job Running at $(date)"
+  signin:
+    name: Auto Signin to PixAI
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-      - name: Run Auto Signin
+    steps:
+      - name: Print Current Time
+        run: echo "Job started at $(date -u) UTC"
+
+      - name: Run Auto Signin via Docker
         env:
           LOGINNAME: ${{ secrets.LOGINNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+        shell: bash
         run: |
+          echo "Pulling Docker image..."
           docker pull smile0301/auto-pixai
+          echo "Running Auto Signin..."
           docker run --rm \
             -e LOGINNAME="$LOGINNAME" \
             -e PASSWORD="$PASSWORD" \
             smile0301/auto-pixai
-            

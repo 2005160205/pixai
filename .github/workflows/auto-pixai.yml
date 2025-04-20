@@ -23,4 +23,3 @@ jobs:
             -e LOGINNAME="$LOGINNAME" \
             -e PASSWORD="$PASSWORD" \
             smile0301/auto-pixai \
-            --timeout 600

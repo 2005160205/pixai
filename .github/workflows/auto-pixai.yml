@@ -19,6 +19,7 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           docker pull smile0301/auto-pixai
+          docker run --rm \
             -e LOGINNAME="$LOGINNAME" \
             -e PASSWORD="$PASSWORD" \
             smile0301/auto-pixai
